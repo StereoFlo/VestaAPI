@@ -3,6 +3,7 @@
 namespace VestaManage\Services;
 
 use VestaManage\Exceptions\VestaExceptions;
+use VestaManage\Strategy\StrategyAbstract;
 
 class VestaManage
 {
@@ -53,6 +54,19 @@ class VestaManage
      * @var bool
      */
     private $toArray = false;
+
+    /**
+     * @var StrategyAbstract
+     */
+    private $strategy;
+
+    /**
+     * VestaManage constructor.
+     */
+    public function __construct()
+    {
+        $this->strategy = Curl::create();
+    }
 
     /**
      * @param string $server
@@ -152,7 +166,7 @@ class VestaManage
     /**
      * @param string $cmd
      *
-     * @return Sender
+     * @return StrategyAbstract
      * @throws VestaExceptions
      */
     public function send($cmd)
@@ -171,8 +185,8 @@ class VestaManage
             $postVars['arg' . $num] = $args[$num];
         }
 
-        $query = Sender::create()
-            ->setUri('https://' . $this->host . ':8083/api/')
+        $query = $this->strategy
+            ->setUrl('https://' . $this->host . ':8083/api/')
             ->setPostString($postVars)
             ->setTimeout(10);
 
@@ -183,21 +197,21 @@ class VestaManage
     }
 
     /**
-     * @param Sender $sender
+     * @param StrategyAbstract $sender
      *
      * @return mixed
      */
-    public function toString(Sender $sender)
+    public function toString(StrategyAbstract $sender)
     {
         return $sender->getRaw();
     }
 
     /**
-     * @param Sender $sender
+     * @param StrategyAbstract $sender
      *
      * @return array
      */
-    public function toArray(Sender $sender)
+    public function toArray(StrategyAbstract $sender)
     {
         return $sender->getArray();
     }

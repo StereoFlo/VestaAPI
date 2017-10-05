@@ -1,54 +1,50 @@
 <?php
 
-namespace VestaManage\Services;
+namespace VestaManage\Strategy;
 
+use VestaManage\Services\StrategyInterface;
 
-class Sender
+/**
+ * Class StrategyAbstract
+ * @package VestaManage\Strategy
+ */
+abstract class StrategyAbstract implements StrategyInterface
 {
     /**
      * @var string
      */
-    private $uri = '';
+    protected $url = '';
 
     /**
      * @var string
      */
-    private $postString = '';
+    protected $postString = '';
 
     /**
      * @var int
      */
-    private $timeout = 0;
+    protected $timeout = 0;
 
     /**
      * @var bool
      */
-    private $sslVerify = false;
+    protected $sslVerify = false;
 
     /**
-     * for static call
-     * @return Sender
-     */
-    public static function create()
-    {
-        return new self();
-    }
-
-    /**
-     * @param string $uri
+     * @param string $url
      *
-     * @return Sender
+     * @return self
      */
-    public function setUri($uri)
+    public function setUrl($url)
     {
-        $this->uri = $uri;
+        $this->url = $url;
         return $this;
     }
 
     /**
      * @param array $postString
      *
-     * @return Sender
+     * @return self
      */
     public function setPostString($postString)
     {
@@ -59,7 +55,7 @@ class Sender
     /**
      * @param int $timeout
      *
-     * @return Sender
+     * @return self
      */
     public function setTimeout($timeout)
     {
@@ -70,7 +66,7 @@ class Sender
     /**
      * @param bool $sslVerify
      *
-     * @return Sender
+     * @return self
      */
     public function setSslVerify($sslVerify)
     {
@@ -97,34 +93,18 @@ class Sender
     /**
      * @return mixed
      */
-    private function get()
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->uri);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->postString);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->timeout);
-        if (!$this->sslVerify) {
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        }
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
-    }
+    abstract protected function get();
 
     /**
      * @param $json
      *
      * @return mixed
      */
-    private function toArray($json)
+    protected function toArray($json)
     {
         if (empty($json)) {
             return [];
         }
         return json_decode($json, true);
     }
-
 }
