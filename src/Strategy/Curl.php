@@ -1,10 +1,12 @@
 <?php
 
-namespace VestaManage\Services;
+namespace VestaManage\Strategy;
 
 
-use VestaManage\Strategy\StrategyAbstract;
-
+/**
+ * Class Curl
+ * @package VestaManage\Strategy
+ */
 class Curl extends StrategyAbstract
 {
     /**

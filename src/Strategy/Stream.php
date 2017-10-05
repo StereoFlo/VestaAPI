@@ -17,6 +17,7 @@ class Stream extends StrategyAbstract
         $options = [
             'http' => [
                 'method' => 'POST',
+                'header'=> "Content-type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . \mb_strlen($this->postString) . "\r\n",
                 'content' => $this->postString,
             ],
         ];

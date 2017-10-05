@@ -1,8 +1,11 @@
 <?php
 
-namespace VestaManage\Services;
+namespace VestaManage\Strategy;
 
-
+/**
+ * Interface StrategyInterface
+ * @package VestaManage\Strategy
+ */
 interface StrategyInterface
 {
     /**

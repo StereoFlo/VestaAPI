@@ -1,9 +1,6 @@
 <?php
 
 namespace VestaManage\Strategy;
-
-use VestaManage\Services\StrategyInterface;
-
 /**
  * Class StrategyAbstract
  * @package VestaManage\Strategy
