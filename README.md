@@ -11,15 +11,16 @@ $ composer require stereoflo/vesta-manage
 
 Publication
 ```php
-php artisan vendor:publish -all
+php artisan vendor:publish
 ```
+Then select a needed option from list
 
-Generate api key
+Generate api key on a server
 
 ```bash
 bash /usr/local/vesta/bin/v-generate-api-key
 ```
-Or you can view existing keys
+Or you can get existing keys
 
 ```sh
 ls -l /usr/local/vesta/data/keys/
@@ -32,5 +33,5 @@ Simple usage
 ```php
 use VestaManage\Facades\Vesta;
 
-$backups = Vesta::server('testVDS')->setUserName('MyUserName')->listUserBackups($userThatUWantView);
+$backups = Vesta::server('testVDS')->setUserName($userThatUWantToView)->listUserBackups();
 
