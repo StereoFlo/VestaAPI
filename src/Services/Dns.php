@@ -7,60 +7,53 @@ trait Dns
     /**
      * List DNS.
      *
-     * @param string $user
-     *
      * @return mixed
      */
-    public function listDNS($user)
+    public function listDNS()
     {
-        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-domains', $user, 'json'));
+        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-domains', $this->getUserName(), 'json'));
     }
 
     /**
      * List Only DNS.
      *
-     * @param string $user
      * @param        $dns
      *
      * @return mixed
      */
-    public function listOnlyDNS($user, $dns)
+    public function listOnlyDNS($dns)
     {
-        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-domain', $user, $dns,
-            'json'));
+        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-domain', $this->getUserName(), $dns, 'json'));
     }
 
     /**
      * Delete DNS record domain.
      *
-     * @param string $user
-     * @param        $domain
+     * @param string $domain
      *
      * @return mixed
      */
-    public function deleteDNDDomain($user, $domain)
+    public function deleteDNDDomain($domain)
     {
-        return $this->toString($this->send('v-delete-dns-domain', $user, $domain));
+        return $this->toString($this->send('v-delete-dns-domain', $this->getUserName(), $domain));
     }
 
     /**
      * Delete DNS record.
      *
-     * @param string $user
      * @param        $domain
      * @param        $recordId
      *
      * @return mixed
      */
-    public function deleteDNSRecord($user, $domain, $recordId)
+    public function deleteDNSRecord($domain, $recordId)
     {
-        return $this->toString($this->send('v-delete-dns-record', $user, $domain, $recordId));
+        return $this->toString($this->send('v-delete-dns-record', $this->getUserName(), $domain, $recordId));
     }
 
     /**
      * Add DNS domain.
      *
-     * @param string $user
      * @param        $domain
      * @param        $ip
      * @param        $ns1
@@ -70,51 +63,47 @@ trait Dns
      *
      * @return mixed
      */
-    public function addDNSDomain($user, $domain, $ip, $ns1, $ns2, $ns3 = null, $ns4 = null)
+    public function addDNSDomain($domain, $ip, $ns1, $ns2, $ns3 = null, $ns4 = null)
     {
-        return $this->toString($this->send('v-add-dns-domain', $user, $domain, $ip, $ns1, $ns2, $ns3, $ns4, 'no'));
+        return $this->toString($this->send('v-add-dns-domain', $this->getUserName(), $domain, $ip, $ns1, $ns2, $ns3, $ns4, 'no'));
     }
 
     /**
      * Set expiriation date.
      *
-     * @param string $user
      * @param        $domain
      * @param        $exp
      *
      * @return mixed
      */
-    public function changeDNSDomainExp($user, $domain, $exp)
+    public function changeDNSDomainExp($domain, $exp)
     {
-        return $this->toString($this->send('v-change-dns-domain-exp', $user, $domain, $exp, 'no'));
+        return $this->toString($this->send('v-change-dns-domain-exp', $this->getUserName(), $domain, $exp, 'no'));
     }
 
     /**
      * Set TTL.
      *
-     * @param string $user
      * @param        $domain
      * @param        $ttl
      *
      * @return mixed
      */
-    public function changeDNSDomainTtl($user, $domain, $ttl)
+    public function changeDNSDomainTtl($domain, $ttl)
     {
-        return $this->toString($this->send('v-change-dns-domain-ttl', $user, $domain, $ttl, 'no'));
+        return $this->toString($this->send('v-change-dns-domain-ttl', $this->getUserName(), $domain, $ttl, 'no'));
     }
 
     /**
      * List DNS record domain.
      *
-     * @param string $user
      * @param        $domain
      *
      * @return mixed
      */
-    public function listDNSRecords($user, $domain)
+    public function listDNSRecords($domain)
     {
-        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-records', $user, $domain,
-            'json'));
+        return $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-dns-records', $this->getUserName(), $domain, 'json'));
     }
 
     /**
@@ -130,7 +119,7 @@ trait Dns
      */
     public function changeDNSDomainRecord($user, $domain, $recordId, $val, $priority)
     {
-        return $this->toString($this->send('v-change-dns-record', $user, $domain, $recordId, $val, $priority));
+        return $this->toString($this->send('v-change-dns-record', $this->getUserName(), $domain, $recordId, $val, $priority));
     }
 
     /**
@@ -144,7 +133,7 @@ trait Dns
      */
     public function removeDNSRecord($user, $domain, $recordId)
     {
-        return $this->toString($this->send('v-delete-dns-record', $user, $domain, $recordId));
+        return $this->toString($this->send('v-delete-dns-record', $this->getUserName(), $domain, $recordId));
     }
 
     /**

@@ -10,6 +10,23 @@ class VestaAPI
 
     const RETURN_CODE_YES = 'yes',
           RETURN_CODE_NO = 'no';
+
+    const POSITION_TYPE        = 0;
+    const POSITION_PERMISSIONS = 1;
+    const POSITION_DATE        = 2;
+    const POSITION_TIME        = 3;
+    const POSITION_OWNER       = 4;
+    const POSITION_GROUP       = 5;
+    const POSITION_SIZE        = 6;
+    const POSITION_NAME        = 7;
+
+    const FILESYSTEM_DELIMITER = '|';
+
+    /**
+     * @var string
+     */
+    private $adminUserName = '';
+
     /**
      * @var string
      */
@@ -59,8 +76,9 @@ class VestaAPI
             throw new \Exception('Specified server config does not contain host or key');
         }
 
-        $this->key = (string) $allServers[$server]['key'];
-        $this->host = (string) $allServers[$server]['host'];
+        $this->key           = $allServers[$server]['key'];
+        $this->host          = $allServers[$server]['host'];
+        $this->adminUserName = $allServers[$server]['admin'];
 
         return $this;
     }
@@ -112,7 +130,7 @@ class VestaAPI
     /**
      * @param string $returnCode
      *
-     * @return VestaAPI
+     * @return self
      */
     public function setReturnCode($returnCode)
     {
@@ -123,7 +141,7 @@ class VestaAPI
     /**
      * @param bool $toArray
      *
-     * @return VestaAPI
+     * @return self
      */
     public function setToArray($toArray)
     {
@@ -140,7 +158,7 @@ class VestaAPI
     public function send($cmd)
     {
         $postVars = [
-            'user'       => $this->userName,
+            'user'       => $this->adminUserName,
             'hash'       => $this->key, // api key
             'returncode' => $this->returnCode,
             'cmd'        => $cmd,
@@ -150,7 +168,7 @@ class VestaAPI
             if ($num === 0) {
                 continue;
             }
-            $postVars['arg'.$num] = $args[$num];
+            $postVars['arg' . $num] = $args[$num];
         }
 
         $query = Sender::create()
@@ -158,7 +176,7 @@ class VestaAPI
             ->setPostString($postVars)
             ->setTimeout(10);
 
-        if ($this->getReturnCode() == 'yes' && $query != 0) {
+        if ($this->getReturnCode() === 'yes' && $query !== 0) {
             throw new VestaExceptions($query);
         }
         return $query;

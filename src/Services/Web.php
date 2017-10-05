@@ -15,15 +15,15 @@ trait Web
     {
         $data = $this->setReturnCode(self::RETURN_CODE_NO)->toArray($this->send('v-list-web-domain', $this->getUserName(), $domain, 'json'));
 
-        $ftpU = strpos($data[$domain]['FTP_USER'], ':');
-        $ftpPath = strpos($data[$domain]['FTP_PATH'], ':');
+        $ftpU = \strpos($data[$domain]['FTP_USER'], ':');
+        $ftpPath = \strpos($data[$domain]['FTP_PATH'], ':');
 
-        if ($ftpU !== false) {
-            $ftAr = explode(':', $data[$domain]['FTP_USER']);
+        if (false !== $ftpU) {
+            $ftAr = \explode(':', $data[$domain]['FTP_USER']);
             $data[$domain]['FTP_USER'] = $ftAr;
         }
-        if ($ftpPath !== false) {
-            $ftpP = explode(':', $data[$domain]['FTP_PATH']);
+        if (false !== $ftpPath) {
+            $ftpP = \explode(':', $data[$domain]['FTP_PATH']);
             $data[$domain]['FTP_PATH'] = $ftpP;
         }
 

@@ -8,7 +8,7 @@ use VestaAPI\Services\VestaAPI;
 class Vesta extends Facade
 {
     /**
-     * @return string
+     * @return VestaAPI
      */
     protected static function getFacadeAccessor()
     {
