@@ -6,7 +6,7 @@
 Going your project directory on shell and run this command: 
 
 ```sh
-$ composer require stereoflo/VestaManage
+$ composer require stereoflo/vesta-manage
 ```
 
 Publication
