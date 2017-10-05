@@ -1,5 +1,5 @@
 {
-  "name": "stereoflo/VestaManage",
+  "name": "stereoflo/vesta-manage",
   "description": "VestaCP client for Laravel",
   "keywords": [
     "framework",
@@ -15,8 +15,8 @@
   },
   "license": "GPL-3.0",
   "support": {
-    "issues": "https://github.com/stereoflo/VestaManage/issues",
-    "source": "https://github.com/stereoflo/VestaManage"
+    "issues": "https://github.com/stereoflo/vesta-manage/issues",
+    "source": "https://github.com/stereoflo/vesta-manage"
   },
   "authors": [
     {
