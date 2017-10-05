@@ -1,10 +1,10 @@
 <?php
 
-namespace VestaAPI\Services;
+namespace VestaManage\Services;
 
-use VestaAPI\Exceptions\VestaExceptions;
+use VestaManage\Exceptions\VestaExceptions;
 
-class VestaAPI
+class VestaManage
 {
     use Db, Dns, User, Web, Service, Cron, FileSystem;
 

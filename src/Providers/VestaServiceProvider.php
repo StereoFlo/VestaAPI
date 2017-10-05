@@ -1,6 +1,6 @@
 <?php
 
-namespace VestaAPI\Providers;
+namespace VestaManage\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
