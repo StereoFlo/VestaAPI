@@ -4,6 +4,8 @@ namespace VestaManage\Services;
 
 use VestaManage\Exceptions\VestaExceptions;
 use VestaManage\Strategy\StrategyAbstract;
+use VestaManage\Strategy\Curl;
+use VestaManage\Strategy\Stream;
 
 class VestaManage
 {
@@ -22,6 +24,9 @@ class VestaManage
     const POSITION_NAME        = 7;
 
     const FILESYSTEM_DELIMITER = '|';
+
+    const STRATEGY_STREAM = 'stream';
+    const STRATEGY_CURL = 'curl';
 
     /**
      * @var string
@@ -65,7 +70,18 @@ class VestaManage
      */
     public function __construct()
     {
-        $this->strategy = Curl::create();
+        $strategy = config('vesta.strategy');
+        switch ($strategy) {
+            case self::STRATEGY_CURL:
+                $this->strategy = Curl::create();
+                break;
+            case self::STRATEGY_STREAM:
+                $this->strategy = Stream::create();
+                break;
+        }
+        if (\is_null($this->strategy)) {
+            throw new \Exception('Strategy is not specify');
+        }
     }
 
     /**
