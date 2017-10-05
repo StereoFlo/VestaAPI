@@ -1,5 +1,5 @@
 {
-  "name": "stereoflo/vesta-api",
+  "name": "stereoflo/VestaManage",
   "description": "VestaCP client for Laravel",
   "keywords": [
     "framework",
@@ -15,14 +15,10 @@
   },
   "license": "GPL-3.0",
   "support": {
-    "issues": "https://github.com/stereoflo/VestaAPI/issues",
-    "source": "https://github.com/stereoflo/VestaAPI"
+    "issues": "https://github.com/stereoflo/VestaManage/issues",
+    "source": "https://github.com/stereoflo/VestaManage"
   },
   "authors": [
-    {
-      "name": "Alexandr Chernyaev",
-      "email": "bliz48rus@gmail.com"
-    },
     {
       "name": "Stereo Flo",
       "email": "stereoflo@stereoflo.ru"
@@ -30,16 +26,16 @@
   ],
   "autoload": {
     "psr-4": {
-      "VestaAPI\\": "src/"
+      "VestaManage\\": "src/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "VestaAPI\\Providers\\VestaServiceProvider"
+        "VestaManage\\Providers\\VestaServiceProvider"
       ],
       "aliases": {
-        "Dashboard": "VestaAPI\\Facades\\Vesta"
+        "Dashboard": "VestaManage\\Facades\\Vesta"
       }
     }
   },

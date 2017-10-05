@@ -1,6 +1,6 @@
 <?php
 
-namespace VestaAPI\Exceptions;
+namespace VestaManage\Exceptions;
 
 use Exception;
 

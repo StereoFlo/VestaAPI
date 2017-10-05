@@ -1,13 +1,6 @@
 <?php
-/**
- * File:    Sender.php
- * Project: VestaAPI
- * User:    evgen
- * Date:    18.09.17
- * Time:    16:32
- */
 
-namespace VestaAPI\Services;
+namespace VestaManage\Services;
 
 
 class Sender

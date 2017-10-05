@@ -1,17 +1,17 @@
 <?php
 
-namespace VestaAPI\Facades;
+namespace VestaManage\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use VestaAPI\Services\VestaAPI;
+use VestaManage\Services\VestaManage;
 
 class Vesta extends Facade
 {
     /**
-     * @return VestaAPI
+     * @return VestaManage
      */
     protected static function getFacadeAccessor()
     {
-        return VestaAPI::class;
+        return VestaManage::class;
     }
 }
