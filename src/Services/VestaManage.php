@@ -195,7 +195,7 @@ class VestaManage
         ];
         $args = func_get_args();
         foreach ($args as $num => $arg) {
-            if ($num === 0) {
+            if (empty($num)) {
                 continue;
             }
             $postVars['arg' . $num] = $args[$num];
