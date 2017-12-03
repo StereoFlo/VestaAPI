@@ -85,6 +85,39 @@ class VestaManage
     }
 
     /**
+     * @param string $key
+     *
+     * @return VestaManage
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+        return $this;
+    }
+
+    /**
+     * @param string $adminUserName
+     *
+     * @return VestaManage
+     */
+    public function setAdminUserName($adminUserName)
+    {
+        $this->adminUserName = $adminUserName;
+        return $this;
+    }
+
+    /**
+     * @param mixed $host
+     *
+     * @return VestaManage
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+        return $this;
+    }
+
+    /**
      * @param string $server
      *
      * @throws \Exception
@@ -221,7 +254,6 @@ class VestaManage
     {
         return $sender->getRaw();
     }
-
     /**
      * @param StrategyAbstract $sender
      *
@@ -231,4 +263,5 @@ class VestaManage
     {
         return $sender->getArray();
     }
+
 }
